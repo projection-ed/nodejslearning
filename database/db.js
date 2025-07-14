@@ -17,7 +17,7 @@ function createConnection(){
 
 function getConnection(){
     if(connectedClient === null){
-        console.log("hello");
+        // console.log("hello");
         
         createConnection();
     }else{

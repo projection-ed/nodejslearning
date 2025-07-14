@@ -1,3 +1,24 @@
 {{>header}}
-    <h1>Welcome to Home Page</h1>
+<div class="container">
+    <div class="row mt-5">
+        {{#each products}}
+        <div class="col-lg-4">
+            <a href="/product/getDetails">
+            <div class="card" style="width: 18rem;">
+                {{!-- <img src="..." class="card-img-top" alt="..."> --}}
+                <div class="card-body">
+                    <h5 class="card-title">{{this.name}}</h5>
+                    <p class="card-text">{{this.description}}</p>
+                    <h4>₹{{this.price}}</h4>
+                </div>
+                <div class="card-body">
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
+            </a>
+        </div>
+        {{/each}}
+    </div>
+</div>
 {{>footer}}

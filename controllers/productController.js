@@ -1,5 +1,20 @@
+const ProductModel = require("../models/productModel")
 module.exports.home = (req,res) => {
-    res.render("products/products")
+
+    let model = new ProductModel()
+    model.getAllProducts()
+    .then(result => {
+        res.render("products/products",{
+            products:result
+        })
+    }).catch(error => {
+        console.log(error);
+        res.render("products/products",{
+            products:[]
+        })
+    })
+
+
 }
 
 module.exports.addProduct = (req,res) => {
@@ -7,7 +22,18 @@ module.exports.addProduct = (req,res) => {
 }
 
 module.exports.createProduct = (req,res)=>{
-    console.log(req.body);
+    const model = new ProductModel(req.body.name,req.body.description,req.body.price)
+    model.addProduct((result) => {
+        if (result == null || result == undefined){
+            res.render("products/add-product")
+        }else{
+            res.redirect("/product")
+        }
+    })
+}
+
+module.exports.getDetails = (req,res) => {
+    console.log(req.query.id);
     
-    res.render("products/add-product")
+    res.render("products/product-details")
 }
