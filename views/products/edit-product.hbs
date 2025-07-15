@@ -1,0 +1,47 @@
+{{>header}}
+    <!--Add Product Page-->
+            <div class="container mt-5 w-50">
+      <h2 class="mb-4">Add New Product</h2>
+      <form action="/product/edit-product" method="post">
+        <div class="mb-3">
+          <label for="productName" class="form-label">Product Name</label>
+          <input type="text" value="{{product.name}}" name="name" class="form-control" id="productName" placeholder="Enter product name">
+        </div>
+
+        <div class="mb-3">
+          <label for="productDescription" class="form-label">Description</label>
+          <textarea class="form-control" name="description" id="productDescription" rows="3" placeholder="Enter product description">{{product.description}}</textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="productPrice" class="form-label">Price</label>
+          <input type="number" value="{{product.price}}" name="price" class="form-control" id="productPrice" placeholder="Enter price">
+        </div>
+
+        <div class="mb-3">
+          <label for="productCategory" class="form-label">Category</label>
+          <select class="form-select" id="productCategory">
+            <option selected disabled>Choose category</option>
+            <option value="electronics">Electronics</option>
+            <option value="fashion">Fashion</option>
+            <option value="books">Books</option>
+            <option value="home">Home & Kitchen</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="productImage" class="form-label">Product Image</label>
+          <input class="form-control" type="file" id="productImage">
+        </div>
+
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" id="productAvailable">
+          <label class="form-check-label" for="productAvailable">
+            Available in stock
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-dark">Add Product</button>
+      </form>
+    </div>
+{{>footer}}

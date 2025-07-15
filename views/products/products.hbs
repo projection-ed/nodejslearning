@@ -12,8 +12,8 @@
                     <h4>₹{{this.price}}</h4>
                 </div>
                 <div class="card-body">
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+                    <a href="/product/editProduct/{{this._id}}" class="btn btn-warning">Edit</a>
+                    <a href="/product/delete/{{this._id}}" class="btn btn-danger">Delete</a>
                 </div>
             </div>
             </a>
@@ -22,3 +22,5 @@
     </div>
 </div>
 {{>footer}}
+
+{{!-- client (id) -> Server (id) -> db (id) -delete -> server -> client --}}

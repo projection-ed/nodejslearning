@@ -1,3 +1,4 @@
+const { ObjectId } = require("mongodb")
 const {getConnection} = require("../database/db")
 class ProductModel{
     constructor(name,description,price){
@@ -22,6 +23,17 @@ class ProductModel{
     getAllProducts(){
         const db = getConnection()
         return db.collection("products").find().toArray()
+    }
+
+    deleteProductById(_id){
+        const db = getConnection()
+        console.log(_id);
+        return db.collection("products").deleteOne({_id:new ObjectId(_id)})
+    }
+
+    getProductById(_id){
+        const db = getConnection()
+       return db.collection("products").findOne({_id:new ObjectId(_id)})
     }
 }
 

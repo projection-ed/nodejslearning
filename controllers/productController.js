@@ -4,6 +4,8 @@ module.exports.home = (req,res) => {
     let model = new ProductModel()
     model.getAllProducts()
     .then(result => {
+        console.log(result);
+        
         res.render("products/products",{
             products:result
         })
@@ -36,4 +38,31 @@ module.exports.getDetails = (req,res) => {
     console.log(req.query.id);
     
     res.render("products/product-details")
+}
+
+module.exports.deleteProduct = (req, res) => {
+    console.log(req.params.id);
+    const model = new ProductModel()
+    model.deleteProductById(req.params.id)
+    .then(result => {
+        console.log(result);
+        
+        res.redirect("/product")
+    }).catch(error => {
+        console.log(error);
+        res.redirect("/product")
+    })
+}
+
+module.exports.editProduct = (req,res) => {
+    console.log(req.params.productId);
+    let model = new ProductModel()
+    model.getProductById(req.params.productId)
+    .then(result => {
+        console.log(result);
+        res.render("products/edit-product",{product:result})
+    }).catch(erro=>{
+        console.log(error);
+        res.redirect("/product")
+    })
 }
