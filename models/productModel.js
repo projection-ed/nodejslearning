@@ -10,7 +10,7 @@ class ProductModel{
 
     addProduct(callback){
         const db = getConnection()
-        db.collection("products").insertOne({name:this.name,description:this.decription,price:this.price})
+        db.collection(process.env.DB_NAME).insertOne({name:this.name,description:this.decription,price:this.price})
         .then(result => {
             console.log(result);
             callback(result)
@@ -22,19 +22,25 @@ class ProductModel{
 
     getAllProducts(){
         const db = getConnection()
-        return db.collection("products").find().toArray()
+        return db.collection(process.env.DB_NAME).find().toArray()
     }
 
     deleteProductById(_id){
         const db = getConnection()
         console.log(_id);
-        return db.collection("products").deleteOne({_id:new ObjectId(_id)})
+        return db.collection(process.env.DB_NAME).deleteOne({_id:new ObjectId(_id)})
     }
 
     getProductById(_id){
         const db = getConnection()
-       return db.collection("products").findOne({_id:new ObjectId(_id)})
+       return db.collection(process.env.DB_NAME).findOne({_id:new ObjectId(_id)})
     }
+
+    updateProductById(id,body){
+        const db = getConnection()
+        return db.collection(process.env.DB_NAME).updateOne({_id:new ObjectId(id)},{$set:{name:body.name,description:body.description,price:body.price}})
+    }
+
 }
 
 module.exports = ProductModel

@@ -66,3 +66,18 @@ module.exports.editProduct = (req,res) => {
         res.redirect("/product")
     })
 }
+
+module.exports.updateProduct = (req, res)=>{
+    let body = req.body
+    let id = req.params.productId
+    let model = new ProductModel()
+    model.updateProductById(id,body)
+    .then(result =>{ 
+        console.log(result);    
+        res.redirect("/product")        
+    }).catch(error=>{
+        console.log(error);
+        res.redirect(`/product/editProduct/${id}`)
+        
+    })
+}

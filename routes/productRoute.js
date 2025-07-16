@@ -10,5 +10,6 @@ productRoute.post("/product/create-product",productController.createProduct)
 productRoute.get("/product/getDetails",productController.getDetails)
 productRoute.get("/product/delete/:id",productController.deleteProduct)
 productRoute.get("/product/editProduct/:productId",productController.editProduct)
+productRoute.post("/product/edit-product/:productId",productController.updateProduct)
 
 module.exports = productRoute

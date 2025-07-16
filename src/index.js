@@ -1,4 +1,5 @@
 const express = require("express")
+require("dotenv").config()
 const path = require("path")
 const hbs = require("hbs")
 const productRoute = require("../routes/productRoute")
@@ -15,6 +16,6 @@ app.use(express.static(staticPath))
 createConnection()
 hbs.registerPartials(partialsPath)
 
-app.listen(3000,() =>{
+app.listen(process.env.PORT,() =>{
     console.log("Server has been created at http://localhost:3000/");
 })

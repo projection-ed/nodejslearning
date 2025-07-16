@@ -1,11 +1,11 @@
 const mongodb = require("mongodb")
 const MongoClient = mongodb.MongoClient
-const url = "mongodb://127.0.0.1:27017/"
+
 
 let connectedClient = null;
 
 function createConnection(){
-    MongoClient.connect(url)
+    MongoClient.connect(process.env.DB_URL)
     .then(client => {
         console.log("Connected to MongoDB")
         connectedClient = client.db("amazon");
